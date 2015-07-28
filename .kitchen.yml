@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-6.6
+
+suites:
+  - name: no_link
+    run_list:
+      - recipe[delivery-cli-install::default]
+    attributes:
+      delivery_build:
+        delivery-cli:
+          version: '20150715152816+20150715152816-1.el6'
+        repo_name: 'chef/stable'
+
+  - name: link
+    run_list:
+      - recipe[delivery-cli-install::default]
+    attributes:
+      delivery_build:
+        delivery-cli:
+          version: '20150727183811+20150727183811-1.el6'
+        repo_name: 'chef/current'
